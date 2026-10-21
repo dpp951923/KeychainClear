@@ -7,8 +7,14 @@ TWEAK_NAME = KeychainClear
 KeychainClear_FILES = Tweak.xm
 KeychainClear_CFLAGS = -fobjc-arc
 KeychainClear_FRAMEWORKS = Foundation Security
-
-# Replace with the target app bundle identifier.
 KeychainClear_FILTER = com.atebits.Tweetie2
+
+PACKAGE_NAME = com.example.keychainclear
+PACKAGE_VERSION = 1.0.0
+PACKAGE_ARCH = iphoneos-arm
+PACKAGE_DESCRIPTION = Rootless Keychain control tweak with Unix socket interface
+PACKAGE_MAINTAINER = DP
+PACKAGE_SECTION = Tweaks
+PACKAGE_DEPENDS = firmware (>= 15.0)
 
 include $(THEOS_MAKE_PATH)/tweak.mk
