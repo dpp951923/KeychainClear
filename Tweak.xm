@@ -1,4 +1,4 @@
-﻿#import <Foundation/Foundation.h>
+#import <Foundation/Foundation.h>
 #import <Security/Security.h>
 #import <sys/socket.h>
 #import <sys/un.h>
