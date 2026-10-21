@@ -9,6 +9,6 @@ KeychainClear_CFLAGS = -fobjc-arc
 KeychainClear_FRAMEWORKS = Foundation Security
 
 # Replace with the target app bundle identifier.
-KeychainClear_FILTER = com.xxxx
+KeychainClear_FILTER = com.atebits.Tweetie2
 
 include $(THEOS_MAKE_PATH)/tweak.mk
