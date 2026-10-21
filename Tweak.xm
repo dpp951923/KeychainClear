@@ -2,15 +2,14 @@
 #import <Security/Security.h>
 #import <sys/socket.h>
 #import <sys/un.h>
+#import <sys/stat.h>
 #import <unistd.h>
 #import <errno.h>
 #import <string.h>
 
-// 与原 keychain_clear.js 对应的本地控制接口
-static NSString * const kSocketPath = @"/var/mobile/Library/Caches/com.example.keychainclear.sock";
+// 涓庡師 keychain_clear.js 瀵瑰簲鐨勬湰鍦版帶鍒舵帴鍙?static NSString * const kSocketPath = @"/var/mobile/Library/Caches/com.example.keychainclear.sock";
 
-// 对应 JS 中的 itemClasses。
-static NSArray<NSString *> *ItemClasses(void) {
+// 瀵瑰簲 JS 涓殑 itemClasses銆?static NSArray<NSString *> *ItemClasses(void) {
     return @[
         (__bridge NSString *)kSecClassKey,
         (__bridge NSString *)kSecClassIdentity,
@@ -20,9 +19,7 @@ static NSArray<NSString *> *ItemClasses(void) {
     ];
 }
 
-// 对应 JS：SecItemDelete(searchDictionary)。
-// 每一种 kSecClass 都使用 kSecAttrSynchronizableAny。
-static NSDictionary *ClearKeychain(void) {
+// 瀵瑰簲 JS锛歋ecItemDelete(searchDictionary)銆?// 姣忎竴绉?kSecClass 閮戒娇鐢?kSecAttrSynchronizableAny銆?static NSDictionary *ClearKeychain(void) {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
 
     for (NSString *itemClass in ItemClasses()) {
@@ -139,7 +136,5 @@ static void StartSocketServer(void) {
 }
 
 %ctor {
-    // JS 是加载后立即执行；Tweak 改为加载后建立 Socket，
-    // 由 Python 发送 clear 命令来触发同样的清理逻辑。
-    StartSocketServer();
+    // JS 鏄姞杞藉悗绔嬪嵆鎵ц锛汿weak 鏀逛负鍔犺浇鍚庡缓绔?Socket锛?    // 鐢?Python 鍙戦€?clear 鍛戒护鏉ヨЕ鍙戝悓鏍风殑娓呯悊閫昏緫銆?    StartSocketServer();
 }
